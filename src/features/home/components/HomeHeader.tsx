@@ -35,18 +35,16 @@ export function HomeHeader({
       </View>
 
       <View className="gap-1 px-4 py-4">
-        <Text className="text-2xl font-semibold leading-[34px] text-text-primary">
+        <Text className="head-24-sb text-text-primary">
           반가워요, <Text className="text-neon">{nickname} </Text>님
         </Text>
         <Pressable
           className="flex-row items-center gap-2"
           onPress={onLocationPress}>
-          <Text className="text-[17px] leading-[24px] text-text-secondary">
-            현재 위치
-          </Text>
+          <Text className="body-17-r text-text-secondary">현재 위치</Text>
           <View className="shrink flex-row items-center gap-1">
             <Text
-              className="max-w-[180px] text-[17px] leading-[24px] text-text-soft"
+              className="body-17-r max-w-[180px] text-text-soft"
               numberOfLines={1}>
               {location}
             </Text>

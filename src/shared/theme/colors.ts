@@ -14,4 +14,8 @@ export const colors = {
   neonStrong: '#C8F940',
   white: '#FFFFFF',
   black: '#000000',
+  kakao: '#FEE500',
+  googleSurface: '#FDFDFD',
+  danger: '#EC4547',
+  gray400: '#BBBBBB',
 } as const;

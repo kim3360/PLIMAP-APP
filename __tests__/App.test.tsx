@@ -33,13 +33,51 @@ jest.mock('react-native-config', () => ({
   __esModule: true,
   default: {
     GOOGLE_MAPS_API_KEY: 'test-key',
+    API_BASE_URL: 'https://dev.plimap.kr',
+  },
+}));
+
+jest.mock('@react-native-async-storage/async-storage', () => {
+  const store = new Map<string, string>();
+  return {
+    __esModule: true,
+    default: {
+      setItem: jest.fn(async (key: string, value: string) => {
+        store.set(key, value);
+      }),
+      getItem: jest.fn(async (key: string) => store.get(key) ?? null),
+      removeItem: jest.fn(async (key: string) => {
+        store.delete(key);
+      }),
+      clear: jest.fn(async () => {
+        store.clear();
+      }),
+    },
+  };
+});
+
+jest.mock('react-native-webview', () => {
+  const ReactLib = require('react');
+  const {View} = require('react-native');
+  return {
+    __esModule: true,
+    default: (props: object) => ReactLib.createElement(View, props),
+    WebView: (props: object) => ReactLib.createElement(View, props),
+  };
+});
+
+jest.mock('@react-native-cookies/cookies', () => ({
+  __esModule: true,
+  default: {
+    get: jest.fn(async () => ({})),
+    clearAll: jest.fn(async () => true),
   },
 }));
 
 import App from '../App';
 
 test('renders correctly', async () => {
-  await ReactTestRenderer.act(() => {
+  await ReactTestRenderer.act(async () => {
     ReactTestRenderer.create(<App />);
   });
 });

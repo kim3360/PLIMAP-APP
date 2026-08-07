@@ -1,3 +1,138 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* 폰트 설정 */
+    --font-sans: Pretendard, 'Pretendard Variable', system-ui, sans-serif;
+
+    /* 폰트 두께 설정 */
+    --font-weight-semibold: 600;
+    --font-weight-medium: 500;
+    --font-weight-regular: 400;
+
+    /* 폰트 크기 설정 */
+    --font-size-28: 28px;
+    --font-size-24: 24px;
+    --font-size-20: 20px;
+    --font-size-18: 18px;
+    --font-size-17: 17px;
+    --font-size-15: 15px;
+    --font-size-13: 13px;
+    --font-size-12: 12px;
+
+    /* 폰트 라인 높이 설정 */
+    --line-height-tight: 140%;
+  }
+}
+
+/* Head utility */
+@layer utilities {
+  .head-28-m {
+    font-family: Pretendard-Medium;
+    font-size: 28px;
+    line-height: 39.2px;
+    font-weight: 500;
+  }
+
+  .head-24-sb {
+    font-family: Pretendard-SemiBold;
+    font-size: 24px;
+    line-height: 33.6px;
+    font-weight: 600;
+  }
+
+  .head-20-sb {
+    font-family: Pretendard-SemiBold;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+  }
+
+  .head-20-m {
+    font-family: Pretendard-Medium;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 500;
+  }
+
+  .head-18-sb {
+    font-family: Pretendard-SemiBold;
+    font-size: 18px;
+    line-height: 25.2px;
+    font-weight: 600;
+  }
+
+  /* Body utility */
+  .body-24-m {
+    font-family: Pretendard-Medium;
+    font-size: 24px;
+    line-height: 33.6px;
+    font-weight: 500;
+  }
+
+  .body-18-r {
+    font-family: Pretendard-Regular;
+    font-size: 18px;
+    line-height: 25.2px;
+    font-weight: 400;
+  }
+
+  .body-17-m {
+    font-family: Pretendard-Medium;
+    font-size: 17px;
+    line-height: 23.8px;
+    font-weight: 500;
+  }
+
+  .body-17-r {
+    font-family: Pretendard-Regular;
+    font-size: 17px;
+    line-height: 23.8px;
+    font-weight: 400;
+  }
+
+  .body-15-sb {
+    font-family: Pretendard-SemiBold;
+    font-size: 15px;
+    line-height: 21px;
+    font-weight: 600;
+  }
+
+  .body-15-m {
+    font-family: Pretendard-Medium;
+    font-size: 15px;
+    line-height: 21px;
+    font-weight: 500;
+  }
+
+  .body-15-r {
+    font-family: Pretendard-Regular;
+    font-size: 15px;
+    line-height: 21px;
+    font-weight: 400;
+  }
+
+  /* Etc utility */
+  .etc-13-sb {
+    font-family: Pretendard-SemiBold;
+    font-size: 13px;
+    line-height: 18.2px;
+    font-weight: 600;
+  }
+
+  .etc-13-r {
+    font-family: Pretendard-Regular;
+    font-size: 13px;
+    line-height: 18.2px;
+    font-weight: 400;
+  }
+
+  .etc-12-r {
+    font-family: Pretendard-Regular;
+    font-size: 12px;
+    line-height: 16.8px;
+    font-weight: 400;
+  }
+}

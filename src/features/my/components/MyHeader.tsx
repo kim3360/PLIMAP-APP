@@ -18,9 +18,7 @@ export function MyHeader({ nickname, onBackPress, onMenuPress }: Props) {
       >
         <View className="h-3.5 w-2 border-l-2 border-t-2 border-text-primary -rotate-45" />
       </Pressable>
-      <Text className="text-2xl font-semibold leading-[34px] text-text-primary">
-        {nickname}
-      </Text>
+      <Text className="head-24-sb text-text-primary">{nickname}</Text>
       <Pressable
         accessibilityRole="button"
         className="h-6 w-6 items-center justify-center"
