@@ -23,6 +23,10 @@ target 'MyApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  # Google Maps (react-native-maps) — example 앱과 동일하게 autolink 이후에 추가
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-maps/Google', :path => rn_maps_path
+
   post_install do |installer|
     react_native_post_install(
       installer,

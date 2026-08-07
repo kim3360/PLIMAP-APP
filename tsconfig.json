@@ -3,6 +3,13 @@
   "compilerOptions": {
     "types": ["jest"]
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "svg.d.ts",
+    "css.d.ts",
+    "nativewind-env.d.ts",
+    "react-native-config.d.ts"
+  ],
   "exclude": ["**/node_modules", "**/Pods"]
 }
