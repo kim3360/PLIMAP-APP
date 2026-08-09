@@ -1,50 +1,51 @@
-import {Alert, Image, Text, View} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { Alert, Image, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import GoogleIcon from '../../../assets/icons/google.svg';
 import KakaoIcon from '../../../assets/icons/kakao.svg';
-import {KakaoLoginWebView} from '../components/KakaoLoginWebView';
-import {SocialLoginButton} from '../components/SocialLoginButton';
-import {useKakaoLogin} from '../hooks/useKakaoLogin';
+import { colors } from '../../../shared/theme/colors';
+import { KakaoLoginWebView } from '../components/KakaoLoginWebView';
+import { SocialLoginButton } from '../components/SocialLoginButton';
+import { useKakaoLogin } from '../hooks/useKakaoLogin';
 
 type Props = {
-  onAuthenticated: (result?: {isNewUser?: boolean}) => void;
+  onAuthenticated: (result?: { isNewUser?: boolean }) => void;
 };
 
-export function LoginScreen({onAuthenticated}: Props) {
+export function LoginScreen({ onAuthenticated }: Props) {
   const insets = useSafeAreaInsets();
   const kakaoLogin = useKakaoLogin({
-    onSuccess: result => onAuthenticated({isNewUser: result.isNewUser}),
+    onSuccess: result => onAuthenticated({ isNewUser: result.isNewUser }),
   });
 
   return (
-    <View className="flex-1 bg-background">
-      <View className="items-center" style={{paddingTop: insets.top}}>
-        <View className="h-[288px] w-[129px] items-center justify-end">
+    <View className="flex-1 bg-pli-black-100">
+      <View className="items-center" style={{ paddingTop: insets.top }}>
+        <View className="mt-[190px] items-center ">
           <Image
             source={require('../../../assets/images/plimap-wordmark.png')}
             className="h-[43px] w-[215px]"
             resizeMode="contain"
             accessibilityLabel="PLIMAP"
           />
+          <Text className="body-18-r pt-4 text-center text-[#F9F9F9]">
+            지도 위에서 발견하는 새로운 플레이리스트
+          </Text>
         </View>
-        <Text className="body-18-r mt-4 w-[309px] text-center text-[#F9F9F9]">
-          지도 위에서 발견하는 새로운 플레이리스트
-        </Text>
       </View>
-
       <View
         className="mt-[153px] w-full items-center px-[39px]"
-        style={{paddingBottom: Math.max(insets.bottom, 24)}}>
+        style={{ paddingBottom: Math.max(insets.bottom, 24) }}
+      >
         <View className="w-full max-w-[324px] gap-3">
           <SocialLoginButton
             label="카카오로 시작하기"
-            backgroundColor="#FEE500"
+            backgroundColor={colors.kakao}
             Icon={KakaoIcon}
             onPress={kakaoLogin.start}
           />
           <SocialLoginButton
             label="Google로 시작하기"
-            backgroundColor="#FDFDFD"
+            backgroundColor={colors.grayscale0}
             Icon={GoogleIcon}
             onPress={() =>
               Alert.alert('준비 중', 'Google 로그인은 곧 지원될 예정입니다.')
@@ -53,7 +54,7 @@ export function LoginScreen({onAuthenticated}: Props) {
         </View>
 
         {kakaoLogin.errorMessage ? (
-          <Text className="mt-4 px-2 text-center text-[13px] text-red-400">
+          <Text className="etc-13-r mt-4 px-2 text-center text-red">
             {kakaoLogin.errorMessage}
           </Text>
         ) : null}

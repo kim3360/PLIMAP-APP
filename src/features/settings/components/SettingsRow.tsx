@@ -22,7 +22,7 @@ export function SettingsRow({
       <View className="items-center justify-center py-2 pl-3 pr-2">
         <Text
           className="body-15-m"
-          style={{color: danger ? colors.danger : colors.textMuted}}>
+          style={{color: danger ? colors.red : colors.grayscale300}}>
           {label}
         </Text>
       </View>

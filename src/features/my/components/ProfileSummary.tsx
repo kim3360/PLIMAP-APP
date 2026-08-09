@@ -1,4 +1,4 @@
-import {Image, Text, View} from 'react-native';
+import { Image, Text, View } from 'react-native';
 
 type Stat = {
   label: string;
@@ -12,12 +12,12 @@ type Props = {
 
 const fallbackAvatar = require('../../../assets/images/my-avatar.png');
 
-export function ProfileSummary({avatarUrl, stats}: Props) {
+export function ProfileSummary({ avatarUrl, stats }: Props) {
   return (
     <View className="w-full items-center">
       <View className="mb-4 h-[88px] w-[88px] overflow-hidden rounded-full bg-surface-elevated">
         <Image
-          source={avatarUrl ? {uri: avatarUrl} : fallbackAvatar}
+          source={avatarUrl ? { uri: avatarUrl } : fallbackAvatar}
           className="h-full w-full"
           resizeMode="cover"
         />
@@ -30,7 +30,8 @@ export function ProfileSummary({avatarUrl, stats}: Props) {
             </Text>
             <Text
               className="text-[15px] leading-[21px] text-[#BBBBBB]"
-              numberOfLines={1}>
+              numberOfLines={1}
+            >
               {stat.label}
             </Text>
           </View>

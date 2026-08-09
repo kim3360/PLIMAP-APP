@@ -9,6 +9,46 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Primary
+        neon: '#C8F940',
+        'neon-2': '#F7FE90',
+        'neon-gradient-from': '#FCFF98',
+        green: '#14BD83',
+        red: '#EC4547',
+        kakao: '#FEE500',
+        'kakao-text': '#000000D9',
+
+        // Tag
+        'tag-stroke': '#6D794D',
+        'tag-fill': '#C8F94014',
+
+        // PLI_black
+        'pli-black-100': '#0C0D0F',
+        'pli-black-85': '#18181C',
+        'pli-black-75': '#242429',
+        'pli-black-50': '#323238',
+        'pli-black-25': '#4A4A52',
+        'pli-black-10': '#757582',
+
+        // Grayscale
+        'grayscale-1300': '#0F0F0F',
+        'grayscale-1250': '#191919',
+        'grayscale-1200': '#222222',
+        'grayscale-1100': '#333333',
+        'grayscale-1000': '#444444',
+        'grayscale-900': '#555555',
+        'grayscale-800': '#666666',
+        'grayscale-700': '#777777',
+        'grayscale-600': '#888888',
+        'grayscale-500': '#999999',
+        'grayscale-400': '#BBBBBB',
+        'grayscale-300': '#CCCCCC',
+        'grayscale-200': '#DDDDDD',
+        'grayscale-100': '#EFEFEF',
+        'grayscale-30': '#F6F6F6',
+        'grayscale-0': '#FDFDFD',
+
+        // Semantic aliases
         background: '#0C0D0F',
         surface: '#18181C',
         'surface-elevated': '#242429',
@@ -20,7 +60,6 @@ module.exports = {
         'text-soft': '#F6F6F6',
         border: '#333333',
         'border-muted': '#555555',
-        neon: '#F7FE90',
         'neon-strong': '#C8F940',
         danger: '#EC4547',
       },

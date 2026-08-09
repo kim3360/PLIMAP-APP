@@ -1,3 +1,4 @@
+import {useQueryClient} from '@tanstack/react-query';
 import {useState} from 'react';
 import {
   ActivityIndicator,
@@ -10,6 +11,7 @@ import {
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {logout} from '../../auth/api/logout';
+import {queryKeys} from '../../../shared/api/queryKeys';
 import {SettingsRow} from '../components/SettingsRow';
 import {SettingsSection} from '../components/SettingsSection';
 
@@ -21,7 +23,30 @@ type Props = {
 
 export function SettingsScreen({visible, onClose, onLoggedOut}: Props) {
   const insets = useSafeAreaInsets();
+  const queryClient = useQueryClient();
   const [loggingOut, setLoggingOut] = useState(false);
+
+  const performLogout = async () => {
+    if (loggingOut) {
+      return;
+    }
+
+    setLoggingOut(true);
+    try {
+      await logout();
+      queryClient.removeQueries({queryKey: queryKeys.members.all});
+      onLoggedOut();
+    } catch (error) {
+      Alert.alert(
+        '로그아웃 실패',
+        error instanceof Error
+          ? error.message
+          : '로그아웃에 실패했어요. 잠시 후 다시 시도해주세요.',
+      );
+    } finally {
+      setLoggingOut(false);
+    }
+  };
 
   const handleLogout = () => {
     Alert.alert('로그아웃', '정말 로그아웃할까요?', [
@@ -30,25 +55,7 @@ export function SettingsScreen({visible, onClose, onLoggedOut}: Props) {
         text: '로그아웃',
         style: 'destructive',
         onPress: () => {
-          void (async () => {
-            if (loggingOut) {
-              return;
-            }
-            setLoggingOut(true);
-            try {
-              await logout();
-              onLoggedOut();
-            } catch (error) {
-              Alert.alert(
-                '로그아웃 실패',
-                error instanceof Error
-                  ? error.message
-                  : '로그아웃에 실패했어요. 잠시 후 다시 시도해주세요.',
-              );
-            } finally {
-              setLoggingOut(false);
-            }
-          })();
+          performLogout().catch(() => undefined);
         },
       },
     ]);

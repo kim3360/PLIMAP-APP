@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import {
-  ActivityIndicator,
   Pressable,
   ScrollView,
   Text,
@@ -10,6 +9,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {SettingsScreen} from '../../settings/screens/SettingsScreen';
 import {EmptyPinState} from '../components/EmptyPinState';
 import {MyHeader} from '../components/MyHeader';
+import {ProfileSkeleton} from '../../../shared/components/ProfileSkeleton';
 import {ProfileActions} from '../components/ProfileActions';
 import {ProfileSummary} from '../components/ProfileSummary';
 import {useMyProfile} from '../hooks/useMyProfile';
@@ -39,12 +39,15 @@ export function MyScreen({onLoggedOut}: Props) {
       </View>
 
       {loading && !profile ? (
-        <View className="flex-1 items-center justify-center">
-          <ActivityIndicator color="#F7FE90" />
-        </View>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerClassName="items-center"
+          contentContainerStyle={{paddingBottom: 140 + insets.bottom}}>
+          <ProfileSkeleton />
+        </ScrollView>
       ) : errorMessage && !profile ? (
         <View className="flex-1 items-center justify-center gap-3 px-8">
-          <Text className="text-center text-[15px] text-text-secondary">
+          <Text className="body-15-r text-center text-text-secondary">
             {errorMessage}
           </Text>
           <Pressable
@@ -53,7 +56,7 @@ export function MyScreen({onLoggedOut}: Props) {
             onPress={() => {
               refresh().catch(() => undefined);
             }}>
-            <Text className="text-[15px] text-text-primary">다시 시도</Text>
+            <Text className="body-15-m text-text-primary">다시 시도</Text>
           </Pressable>
         </View>
       ) : (
