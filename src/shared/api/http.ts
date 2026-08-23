@@ -9,16 +9,25 @@ declare module 'axios' {
   }
 }
 
-export class ApiError extends Error {
+export type ApiError = Error & {
   status: number;
   code?: string;
+};
 
-  constructor(message: string, status: number, code?: string) {
-    super(message);
-    this.name = 'ApiError';
-    this.status = status;
-    this.code = code;
-  }
+export function createApiError(
+  message: string,
+  status: number,
+  code?: string,
+): ApiError {
+  return Object.assign(new Error(message), {
+    name: 'ApiError',
+    status,
+    code,
+  });
+}
+
+function isApiError(error: unknown): error is ApiError {
+  return error instanceof Error && error.name === 'ApiError';
 }
 
 type ApiEnvelope<T> = {
@@ -51,7 +60,7 @@ async function fetchCsrfToken() {
   const payload = response.data;
 
   if (payload.isSuccess === false || !payload.result?.token) {
-    throw new ApiError(
+    throw createApiError(
       payload.message ?? 'CSRF 토큰을 가져오지 못했습니다.',
       response.status,
       payload.code,
@@ -82,7 +91,7 @@ http.interceptors.response.use(
     const payload = response.data as ApiEnvelope<unknown> | undefined;
     if (payload && typeof payload === 'object' && payload.isSuccess === false) {
       return Promise.reject(
-        new ApiError(
+        createApiError(
           payload.message ?? '요청에 실패했습니다.',
           response.status,
           payload.code,
@@ -92,13 +101,13 @@ http.interceptors.response.use(
     return response;
   },
   (error: AxiosError<ApiEnvelope<unknown>>) => {
-    if (error instanceof ApiError) {
+    if (isApiError(error)) {
       return Promise.reject(error);
     }
 
     const payload = error.response?.data;
     return Promise.reject(
-      new ApiError(
+      createApiError(
         payload?.message ?? error.message ?? '요청에 실패했습니다.',
         error.response?.status ?? 0,
         payload?.code,
