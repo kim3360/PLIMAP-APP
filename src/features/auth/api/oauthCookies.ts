@@ -1,5 +1,5 @@
 import CookieManager from '@react-native-cookies/cookies';
-import {API_BASE_URL} from '../../../config/api';
+import Config from 'react-native-config';
 
 function pickCookieValue(
   cookies: Record<string, {value?: string} | undefined>,
@@ -15,7 +15,7 @@ function pickCookieValue(
 }
 
 export async function readOAuthTokensFromCookies() {
-  const cookies = await CookieManager.get(API_BASE_URL, true);
+  const cookies = await CookieManager.get(Config.API_BASE_URL ?? '', true);
 
   const accessToken = pickCookieValue(cookies, [
     'accessToken',

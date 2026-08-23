@@ -1,11 +1,11 @@
-import {API_BASE_URL, FRONTEND_ORIGIN} from '../../../config/api';
+import Config from 'react-native-config';
 
 export function getKakaoAuthorizationUrl() {
   const params = new URLSearchParams({
-    frontendOrigin: FRONTEND_ORIGIN,
+    frontendOrigin: Config.API_BASE_URL ?? '',
   });
 
-  return `${API_BASE_URL}/oauth/authorization/kakao?${params.toString()}`;
+  return `${Config.API_BASE_URL}/oauth/authorization/kakao?${params.toString()}`;
 }
 
 export function isOAuthCallbackUrl(url: string) {
