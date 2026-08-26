@@ -9,6 +9,7 @@ import { colors } from '../../../shared/theme/colors';
 import { queryKeys } from '../../../shared/api/queryKeys';
 
 import { FriendPinCard } from '../components/FriendPinCard';
+import { HomeEmptyCard } from '../components/HomeEmptyCard';
 import { HotPlaceCard } from '../components/HotPlaceCard';
 import { PaginationDots } from '../components/PaginationDots';
 import { SavedPlaceCard } from '../components/SavedPlaceCard';
@@ -104,10 +105,14 @@ export function HomeScreen() {
               ))}
             </ScrollView>
           ) : (
-            <View className="mx-4 mb-[40px] h-[86px] w-[374px] items-center justify-center rounded-[20px] border border-border-muted">
-              <Text className="body-15-r text-text-secondary">
-                친구를 찾을 수 없습니다.
-              </Text>
+            <View className="mx-4 mb-[40px]">
+              <HomeEmptyCard
+                lines={[
+                  '내가 팔로우한 친구들이 등록한 곡이 나와요.',
+                  '지금 친구를 찾아볼까요?',
+                ]}
+                actionLabel="친구 검색하러 가기"
+              />
             </View>
           )}
         </View>
@@ -131,6 +136,7 @@ export function HomeScreen() {
           </View>
         </Pressable>
 
+        {/* 여기서부터 시작 */}
         <View className="gap-4 px-4">
           <Text className="text-[22px] font-medium leading-[31px] text-white">
             내 주변 HOT한 장소🔥
