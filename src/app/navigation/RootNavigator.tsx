@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
-import {ActivityIndicator, View} from 'react-native';
+import {View} from 'react-native';
+import BootSplash from 'react-native-bootsplash';
 import {LoginScreen} from '../../features/auth/screens/LoginScreen';
 import {hasStoredSession} from '../../features/auth/storage/tokenStorage';
 import {HomeScreen} from '../../features/home/screens/HomeScreen';
@@ -19,7 +20,7 @@ export function RootNavigator() {
   useEffect(() => {
     let mounted = true;
 
-    void (async () => {
+    async function bootstrap() {
       try {
         const hasSession = await hasStoredSession();
         if (mounted) {
@@ -28,9 +29,12 @@ export function RootNavigator() {
       } finally {
         if (mounted) {
           setIsBootstrapping(false);
+          await BootSplash.hide({fade: true});
         }
       }
-    })();
+    }
+
+    bootstrap().catch(() => undefined);
 
     return () => {
       mounted = false;
@@ -38,11 +42,7 @@ export function RootNavigator() {
   }, []);
 
   if (isBootstrapping) {
-    return (
-      <View className="flex-1 items-center justify-center bg-background">
-        <ActivityIndicator color="#F7FE90" />
-      </View>
-    );
+    return <View className="flex-1 bg-background" />;
   }
 
   if (!isAuthenticated) {

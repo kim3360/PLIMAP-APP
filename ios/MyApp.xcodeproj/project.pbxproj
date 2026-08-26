@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		078CF3CB2AF14507A0C93255 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F0B887A8B2CC41EEA432AA12 /* Pretendard-Medium.otf */; };
 		09C042D3AB7A486A8B318C42 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 492C3236C8A94E568C920D20 /* Pretendard-SemiBold.otf */; };
+		0AB935E535CD4F899764274B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EDF76AB1F2A427DB462A559 /* Colors.xcassets */; };
 		0C80B921A6F3F58F76C31292 /* libPods-MyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-MyApp.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		16076A2A8BD046C6A2885012 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6F2F114964414EEA85C2F4BD /* Pretendard-Regular.otf */; };
+		6FB911A441AE403F8D8C4586 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6FF2C2F437343A7AB4759D8 /* BootSplash.storyboard */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		821083131C80BE117C17DDB4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
@@ -26,9 +28,11 @@
 		492C3236C8A94E568C920D20 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-SemiBold.otf"; path = "../src/assets/fonts/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-MyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApp.release.xcconfig"; path = "Target Support Files/Pods-MyApp/Pods-MyApp.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-MyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EDF76AB1F2A427DB462A559 /* Colors.xcassets */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = folder.assetcatalog; name = Colors.xcassets; path = MyApp/Colors.xcassets; sourceTree = "<group>"; };
 		6F2F114964414EEA85C2F4BD /* Pretendard-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Regular.otf"; path = "../src/assets/fonts/Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyApp/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MyApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C6FF2C2F437343A7AB4759D8 /* BootSplash.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = BootSplash.storyboard; path = MyApp/BootSplash.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F0B887A8B2CC41EEA432AA12 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-Medium.otf"; path = "../src/assets/fonts/Pretendard-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +57,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				C6FF2C2F437343A7AB4759D8 /* BootSplash.storyboard */,
+				5EDF76AB1F2A427DB462A559 /* Colors.xcassets */,
 			);
 			name = MyApp;
 			sourceTree = "<group>";
@@ -182,6 +188,8 @@
 				16076A2A8BD046C6A2885012 /* Pretendard-Regular.otf in Resources */,
 				078CF3CB2AF14507A0C93255 /* Pretendard-Medium.otf in Resources */,
 				09C042D3AB7A486A8B318C42 /* Pretendard-SemiBold.otf in Resources */,
+				6FB911A441AE403F8D8C4586 /* BootSplash.storyboard in Resources */,
+				0AB935E535CD4F899764274B /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

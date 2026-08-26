@@ -1,6 +1,6 @@
-import axios, {AxiosError, type AxiosRequestConfig} from 'axios';
+import axios, { AxiosError, type AxiosRequestConfig } from 'axios';
 import Config from 'react-native-config';
-import {getAccessToken} from '../../features/auth/storage/tokenStorage';
+import { getAccessToken } from '../../features/auth/storage/tokenStorage';
 
 declare module 'axios' {
   interface AxiosRequestConfig {
@@ -53,9 +53,9 @@ export const http = axios.create({
 });
 
 async function fetchCsrfToken() {
-  const response = await http.get<ApiEnvelope<{token: string}>>(
+  const response = await http.get<ApiEnvelope<{ token: string }>>(
     '/api/v1/auth/csrf',
-    {skipAuth: true, skipCsrf: true},
+    { skipAuth: true, skipCsrf: true },
   );
   const payload = response.data;
 
@@ -120,7 +120,7 @@ export async function apiRequest<T>(
   path: string,
   options: RequestOptions = {},
 ): Promise<T> {
-  const {method = 'GET', body, auth = true} = options;
+  const { method = 'GET', body, auth = true } = options;
 
   const config: AxiosRequestConfig = {
     url: path,
