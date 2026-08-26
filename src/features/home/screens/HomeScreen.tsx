@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useQuery } from '@tanstack/react-query';
 import BellIcon from '../../../assets/icons/bell.svg';
 import NextIcon from '../../../assets/icons/next.svg';
+import SearchIcon from '../../../assets/icons/search.svg';
 import { colors } from '../../../shared/theme/colors';
+import { queryKeys } from '../../../shared/api/queryKeys';
 
 import { FriendPinCard } from '../components/FriendPinCard';
-import { FriendSearchCard } from '../components/FriendSearchCard';
 import { HotPlaceCard } from '../components/HotPlaceCard';
 import { PaginationDots } from '../components/PaginationDots';
 import { SavedPlaceCard } from '../components/SavedPlaceCard';
-import { useHome } from '../hooks/useHome';
+import { getHome } from '../api/home';
 
 const hotPlaces = [
   {
@@ -38,7 +40,12 @@ type HotFilter = 'near' | 'popular';
 export function HomeScreen() {
   const insets = useSafeAreaInsets();
   const [hotFilter, setHotFilter] = useState<HotFilter>('near');
-  const { pins } = useHome();
+  const { data } = useQuery({
+    queryKey: queryKeys.home.feed(),
+    queryFn: () => getHome(),
+    select: home => home.data,
+  });
+  const homeFriends = data ?? [];
 
   return (
     <View className="flex-1 bg-background">
@@ -86,18 +93,43 @@ export function HomeScreen() {
             </View>
           </View>
 
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerClassName="gap-3 px-4 pb-[40px] pt-3"
-          >
-            {pins.map(pin => (
-              <FriendPinCard key={pin.pinId} {...pin} />
-            ))}
-          </ScrollView>
+          {homeFriends.length > 0 ? (
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerClassName="gap-3 px-4 pb-[40px] pt-3"
+            >
+              {homeFriends.map(homeFriend => (
+                <FriendPinCard key={homeFriend.pinId} {...homeFriend} />
+              ))}
+            </ScrollView>
+          ) : (
+            <View className="mx-4 mb-[40px] h-[86px] w-[374px] items-center justify-center rounded-[20px] border border-border-muted">
+              <Text className="body-15-r text-text-secondary">
+                친구를 찾을 수 없습니다.
+              </Text>
+            </View>
+          )}
         </View>
 
-        <FriendSearchCard />
+        <Pressable className="mx-4 h-[86px] flex-row items-center justify-between rounded-xl bg-surface pl-[18px] pr-[24px]">
+          <View className="flex-1 flex-row items-center gap-4">
+            <View className="h-12 w-12 items-center justify-center rounded-full bg-surface-muted">
+              <SearchIcon />
+            </View>
+            <View className="flex-1 gap-1">
+              <Text className="body-15-r  text-text-secondary">
+                닉네임으로 친구를 찾아보세요
+              </Text>
+              <Text className="head-18-sb text-text-primary">
+                친구 검색하러 가기
+              </Text>
+            </View>
+          </View>
+          <View className="pl-2 opacity-50">
+            <NextIcon width={20} height={20} color={colors.textSecondary} />
+          </View>
+        </Pressable>
 
         <View className="gap-4 px-4">
           <Text className="text-[22px] font-medium leading-[31px] text-white">

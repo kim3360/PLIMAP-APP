@@ -24,5 +24,5 @@ export interface GetHomeParams {
 }
 
 export function getHome(params?: GetHomeParams) {
-  return apiRequest<Home>('/api/v1/home', { params });
+  return apiRequest<Home>('/api/v1/pins/friends', { params });
 }
