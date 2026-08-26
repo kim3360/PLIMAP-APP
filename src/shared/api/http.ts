@@ -40,6 +40,7 @@ type ApiEnvelope<T> = {
 type RequestOptions = {
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   body?: unknown;
+  params?: AxiosRequestConfig['params'];
   auth?: boolean;
 };
 
@@ -120,12 +121,13 @@ export async function apiRequest<T>(
   path: string,
   options: RequestOptions = {},
 ): Promise<T> {
-  const { method = 'GET', body, auth = true } = options;
+  const { method = 'GET', body, params, auth = true } = options;
 
   const config: AxiosRequestConfig = {
     url: path,
     method,
     data: body,
+    params,
     skipAuth: !auth,
   };
 

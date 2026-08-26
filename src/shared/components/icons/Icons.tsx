@@ -1,26 +1,9 @@
 import { View } from 'react-native';
-import { colors } from '../../theme/colors';
 
 type IconProps = {
   size?: number;
   color?: string;
 };
-
-export function ChevronIcon({ size = 16, color = colors.textSoft }: IconProps) {
-  return (
-    <View
-      style={{
-        width: size * 0.45,
-        height: size * 0.45,
-        borderTopWidth: 1.5,
-        borderRightWidth: 1.5,
-        borderColor: color,
-        transform: [{ rotate: '45deg' }],
-        marginLeft: 2,
-      }}
-    />
-  );
-}
 
 export function BookmarkIcon({ size = 24, color = '#0C0D0F' }: IconProps) {
   return (

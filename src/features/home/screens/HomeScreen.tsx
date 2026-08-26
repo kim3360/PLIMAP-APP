@@ -2,37 +2,15 @@ import { useState } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import BellIcon from '../../../assets/icons/bell.svg';
-import { ChevronIcon } from '../../../shared/components/icons/Icons';
+import NextIcon from '../../../assets/icons/next.svg';
 import { colors } from '../../../shared/theme/colors';
+
 import { FriendPinCard } from '../components/FriendPinCard';
 import { FriendSearchCard } from '../components/FriendSearchCard';
 import { HotPlaceCard } from '../components/HotPlaceCard';
 import { PaginationDots } from '../components/PaginationDots';
 import { SavedPlaceCard } from '../components/SavedPlaceCard';
-
-const friendPins = [
-  {
-    id: '1',
-    nickname: '냥코',
-    placeName: '뚝섬한강공원',
-    cover: require('../../../assets/images/friend-pin-1.png'),
-    avatar: require('../../../assets/images/friend-avatar-1.png'),
-  },
-  {
-    id: '2',
-    nickname: '졍',
-    placeName: '물빛무대 앞 ...',
-    cover: require('../../../assets/images/friend-pin-2.png'),
-    avatar: require('../../../assets/images/friend-avatar-2.png'),
-  },
-  {
-    id: '3',
-    nickname: 'COR',
-    placeName: '뚝섬역 2호선',
-    cover: require('../../../assets/images/friend-pin-3.png'),
-    avatar: require('../../../assets/images/friend-avatar-3.png'),
-  },
-] as const;
+import { useHome } from '../hooks/useHome';
 
 const hotPlaces = [
   {
@@ -60,6 +38,7 @@ type HotFilter = 'near' | 'popular';
 export function HomeScreen() {
   const insets = useSafeAreaInsets();
   const [hotFilter, setHotFilter] = useState<HotFilter>('near');
+  const { pins } = useHome();
 
   return (
     <View className="flex-1 bg-background">
@@ -93,26 +72,27 @@ export function HomeScreen() {
               </Text>
               <Pressable className="flex-row items-center gap-2">
                 <Text className="body-17-r text-text-secondary">현재 위치</Text>
-                <View className="shrink flex-row items-center gap-1">
+                <View className="flex-row items-center gap-2">
                   <Text
                     className="body-17-r max-w-[180px] text-text-soft"
                     numberOfLines={1}
                   >
                     경기도 성남시 분당구 ..
                   </Text>
-                  {/* 아이콘 수정 필요 */}
-                  <ChevronIcon size={14} color={colors.textSoft} />
+
+                  <NextIcon height={14} color={colors.grayscale30} />
                 </View>
               </Pressable>
             </View>
           </View>
+
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerClassName="gap-3 px-4 pb-[30px] pt-3"
+            contentContainerClassName="gap-3 px-4 pb-[40px] pt-3"
           >
-            {friendPins.map(pin => (
-              <FriendPinCard key={pin.id} {...pin} />
+            {pins.map(pin => (
+              <FriendPinCard key={pin.pinId} {...pin} />
             ))}
           </ScrollView>
         </View>

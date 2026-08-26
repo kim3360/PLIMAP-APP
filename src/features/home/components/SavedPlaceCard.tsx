@@ -1,8 +1,6 @@
 import {Pressable, Text, View} from 'react-native';
-import {
-  BookmarkIcon,
-  ChevronIcon,
-} from '../../../shared/components/icons/Icons';
+import NextIcon from '../../../assets/icons/next.svg';
+import {BookmarkIcon} from '../../../shared/components/icons/Icons';
 import {colors} from '../../../shared/theme/colors';
 
 type Props = {
@@ -29,7 +27,7 @@ export function SavedPlaceCard({
           <Text className="text-[17px] font-medium leading-[24px] text-text-primary">
             {name}
           </Text>
-          <ChevronIcon size={16} color={colors.textPrimary} />
+          <NextIcon width={16} height={16} color={colors.textPrimary} />
         </View>
         <View className="flex-row flex-wrap items-center gap-1">
           <Text className="text-[15px] leading-[21px] text-text-muted">

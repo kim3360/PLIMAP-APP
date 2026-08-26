@@ -1,6 +1,6 @@
 import { apiRequest } from '../../../shared/api/http';
 
-export type MyProfile = {
+export interface MyProfile {
   id: number;
   nickname: string;
   name?: string | null;
@@ -10,7 +10,7 @@ export type MyProfile = {
   followingCount: number;
   onboardingCompletedAt?: string | null;
   pinCount: number;
-};
+}
 
 export function getMyProfile() {
   return apiRequest<MyProfile>('/api/v1/members/me');

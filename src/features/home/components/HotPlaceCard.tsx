@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import LinearGradientFallback from './GradientOverlay';
-import {ChevronIcon} from '../../../shared/components/icons/Icons';
+import NextIcon from '../../../assets/icons/next.svg';
 import {colors} from '../../../shared/theme/colors';
 
 type Props = {
@@ -30,7 +30,7 @@ export function HotPlaceCard({name, meta, image, onPress}: Props) {
             numberOfLines={1}>
             {name}
           </Text>
-          <ChevronIcon size={16} color={colors.textPrimary} />
+          <NextIcon width={16} height={16} color={colors.textPrimary} />
         </View>
         <Text className="text-[15px] leading-[21px] text-text-secondary">
           {meta}

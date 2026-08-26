@@ -1,6 +1,6 @@
 import {Pressable, Text, View} from 'react-native';
+import NextIcon from '../../../assets/icons/next.svg';
 import SearchIcon from '../../../assets/icons/search.svg';
-import {ChevronIcon} from '../../../shared/components/icons/Icons';
 import {colors} from '../../../shared/theme/colors';
 
 type Props = {
@@ -26,7 +26,7 @@ export function FriendSearchCard({onPress}: Props) {
         </View>
       </View>
       <View className="pl-2 opacity-50">
-        <ChevronIcon size={20} color={colors.textSecondary} />
+        <NextIcon width={20} height={20} color={colors.textSecondary} />
       </View>
     </Pressable>
   );
