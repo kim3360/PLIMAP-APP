@@ -17,18 +17,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="BootSplashLogo-768456" translatesAutoresizingMaskIntoConstraints="NO" id="3lX-Ut-9ad">
-                                <rect key="frame" x="97.5" y="314.5" width="180" height="38"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
-                                </accessibility>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="splashStack">
+                                <rect key="frame" x="97.5" y="254.5" width="180" height="158"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SplashMark" translatesAutoresizingMaskIntoConstraints="NO" id="splashMark">
+                                        <rect key="frame" x="58" y="0.0" width="64" height="98"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="markW"/>
+                                            <constraint firstAttribute="height" constant="98" id="markH"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="SplashWordmark" translatesAutoresizingMaskIntoConstraints="NO" id="splashWordmark">
+                                        <rect key="frame" x="0.0" y="114" width="180" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="wordW"/>
+                                            <constraint firstAttribute="height" constant="44" id="wordH"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" name="BootSplashBackground-768456"/>
+                        <color key="backgroundColor" name="BootSplashBackground-cd7b7b"/>
                         <constraints>
-                            <constraint firstItem="3lX-Ut-9ad" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Fh9-Fy-1nT"/>
-                            <constraint firstItem="3lX-Ut-9ad" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="nvB-Ic-PnI"/>
+                            <constraint firstItem="splashStack" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="stackX"/>
+                            <constraint firstItem="splashStack" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="stackY"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,9 +51,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BootSplashLogo-768456" width="180" height="38"/>
-        <namedColor name="BootSplashBackground-768456">
-            <color red="0.0470588235294118" green="0.0509803921568627" blue="0.0588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="SplashMark" width="64" height="98"/>
+        <image name="SplashWordmark" width="180" height="44"/>
+        <namedColor name="BootSplashBackground-cd7b7b">
+            <color red="0.00000000000000" green="0.00000000000000" blue="0.00000000000000" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

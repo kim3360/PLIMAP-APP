@@ -1,21 +1,20 @@
-import {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import BootSplash from 'react-native-bootsplash';
-import {LoginScreen} from '../../features/auth/screens/LoginScreen';
-import {hasStoredSession} from '../../features/auth/storage/tokenStorage';
-import {HomeScreen} from '../../features/home/screens/HomeScreen';
-import {MyScreen} from '../../features/my/screens/MyScreen';
-import {PlimapMapScreen} from '../../features/plimap/screens/PlimapMapScreen';
-import {CustomTabBar} from './CustomTabBar';
-import type {RootTabParamList} from './types';
+import { LoginScreen } from '../../features/auth/screens/LoginScreen';
+import { hasStoredSession } from '../../features/auth/storage/tokenStorage';
+import { HomeScreen } from '../../features/home/screens/HomeScreen';
+import { MyScreen } from '../../features/my/screens/MyScreen';
+import { PlimapMapScreen } from '../../features/plimap/screens/PlimapMapScreen';
+import { CustomTabBar } from './CustomTabBar';
+import type { RootTabParamList } from './types';
 
 const tabs: (keyof RootTabParamList)[] = ['Home', 'Plimap', 'My'];
 
 export function RootNavigator() {
   const [isBootstrapping, setIsBootstrapping] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [activeTab, setActiveTab] =
-    useState<keyof RootTabParamList>('Home');
+  const [activeTab, setActiveTab] = useState<keyof RootTabParamList>('Home');
 
   useEffect(() => {
     let mounted = true;
@@ -29,7 +28,7 @@ export function RootNavigator() {
       } finally {
         if (mounted) {
           setIsBootstrapping(false);
-          await BootSplash.hide({fade: true});
+          await BootSplash.hide({ fade: true });
         }
       }
     }

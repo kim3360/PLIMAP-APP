@@ -56,7 +56,7 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
 
   override func customize(_ rootView: RCTRootView) {
     super.customize(rootView)
-    rootView.backgroundColor = UIColor(red: 12 / 255, green: 13 / 255, blue: 15 / 255, alpha: 1)
+    rootView.backgroundColor = UIColor.black
     RNBootSplash.initWithStoryboard("BootSplash", rootView: rootView)
   }
 }
