@@ -1,12 +1,14 @@
-import {useState} from 'react';
-import {Pressable, ScrollView, Text, View} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {FriendPinCard} from '../components/FriendPinCard';
-import {FriendSearchCard} from '../components/FriendSearchCard';
-import {HomeHeader} from '../components/HomeHeader';
-import {HotPlaceCard} from '../components/HotPlaceCard';
-import {PaginationDots} from '../components/PaginationDots';
-import {SavedPlaceCard} from '../components/SavedPlaceCard';
+import { useState } from 'react';
+import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import BellIcon from '../../../assets/icons/bell.svg';
+import { ChevronIcon } from '../../../shared/components/icons/Icons';
+import { colors } from '../../../shared/theme/colors';
+import { FriendPinCard } from '../components/FriendPinCard';
+import { FriendSearchCard } from '../components/FriendSearchCard';
+import { HotPlaceCard } from '../components/HotPlaceCard';
+import { PaginationDots } from '../components/PaginationDots';
+import { SavedPlaceCard } from '../components/SavedPlaceCard';
 
 const friendPins = [
   {
@@ -48,9 +50,9 @@ const hotPlaces = [
 ] as const;
 
 const savedPlaces = [
-  {id: '1', name: '물빛무대 앞 광장', creator: '홍길동', distance: '470m'},
-  {id: '2', name: '뚝섬역 2호선', creator: '홍길동', distance: '470m'},
-  {id: '3', name: '한강서점', creator: '홍길동', distance: '470m'},
+  { id: '1', name: '물빛무대 앞 광장', creator: '홍길동', distance: '470m' },
+  { id: '2', name: '뚝섬역 2호선', creator: '홍길동', distance: '470m' },
+  { id: '3', name: '한강서점', creator: '홍길동', distance: '470m' },
 ] as const;
 
 type HotFilter = 'near' | 'popular';
@@ -64,13 +66,51 @@ export function HomeScreen() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerClassName="gap-[30px]"
-        contentContainerStyle={{paddingBottom: 120 + insets.bottom}}>
-        <View className="bg-surface" style={{paddingTop: insets.top}}>
-          <HomeHeader nickname="1mhyori" location="경기도 성남시 분당구 .." />
+        contentContainerStyle={{ paddingBottom: 120 + insets.bottom }}
+      >
+        <View className="bg-surface" style={{ paddingTop: insets.top }}>
+          <View>
+            <View className="h-14 flex-row items-center justify-between px-4">
+              <View className="flex-row items-center gap-2.5">
+                <Image
+                  source={require('../../../assets/Logo.png')}
+                  className="h-[30px] w-[152px]"
+                  resizeMode="contain"
+                />
+              </View>
+
+              <Pressable
+                accessibilityRole="button"
+                className="h-11 w-11 items-center justify-center rounded-full bg-surface-elevated"
+              >
+                <BellIcon width={24} height={24} />
+              </Pressable>
+            </View>
+
+            <View className="gap-1 p-4">
+              <Text className="head-24-sb text-text-primary">
+                반가워요, <Text className="text-neon">1mhyori </Text>님
+              </Text>
+              <Pressable className="flex-row items-center gap-2">
+                <Text className="body-17-r text-text-secondary">현재 위치</Text>
+                <View className="shrink flex-row items-center gap-1">
+                  <Text
+                    className="body-17-r max-w-[180px] text-text-soft"
+                    numberOfLines={1}
+                  >
+                    경기도 성남시 분당구 ..
+                  </Text>
+                  {/* 아이콘 수정 필요 */}
+                  <ChevronIcon size={14} color={colors.textSoft} />
+                </View>
+              </Pressable>
+            </View>
+          </View>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerClassName="gap-3 px-4 pb-[30px] pt-3">
+            contentContainerClassName="gap-3 px-4 pb-[30px] pt-3"
+          >
             {friendPins.map(pin => (
               <FriendPinCard key={pin.id} {...pin} />
             ))}
@@ -88,13 +128,15 @@ export function HomeScreen() {
               className={`rounded-full px-4 py-2.5 ${
                 hotFilter === 'near' ? 'bg-surface-muted' : 'bg-transparent'
               }`}
-              onPress={() => setHotFilter('near')}>
+              onPress={() => setHotFilter('near')}
+            >
               <Text
                 className={`text-[15px] leading-[21px] ${
                   hotFilter === 'near'
                     ? 'text-text-muted'
                     : 'text-text-tertiary'
-                }`}>
+                }`}
+              >
                 나와 가까운
               </Text>
             </Pressable>
@@ -104,13 +146,15 @@ export function HomeScreen() {
                   ? 'bg-surface-muted'
                   : 'border border-border-muted bg-transparent'
               }`}
-              onPress={() => setHotFilter('popular')}>
+              onPress={() => setHotFilter('popular')}
+            >
               <Text
                 className={`text-[15px] leading-[21px] ${
                   hotFilter === 'popular'
                     ? 'text-text-muted'
                     : 'text-text-tertiary'
-                }`}>
+                }`}
+              >
                 많이 등록된
               </Text>
             </Pressable>
@@ -118,7 +162,8 @@ export function HomeScreen() {
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerClassName="gap-3">
+            contentContainerClassName="gap-3"
+          >
             {hotPlaces.map(place => (
               <HotPlaceCard key={place.id} {...place} />
             ))}
