@@ -1,7 +1,8 @@
-import {Pressable, Text, View} from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import NextIcon from '../../../assets/icons/next.svg';
-import {BookmarkIcon} from '../../../shared/components/icons/Icons';
-import {colors} from '../../../shared/theme/colors';
+import BookmarkIcon from '../../../assets/icons/bookmark.svg';
+
+import { colors } from '../../../shared/theme/colors';
 
 type Props = {
   name: string;
@@ -21,7 +22,8 @@ export function SavedPlaceCard({
   return (
     <Pressable
       className="w-full flex-row items-center justify-between rounded-xl bg-surface px-5 py-[18px]"
-      onPress={onPress}>
+      onPress={onPress}
+    >
       <View className="flex-1 gap-1 pr-3">
         <View className="flex-row items-center">
           <Text className="text-[17px] font-medium leading-[24px] text-text-primary">
@@ -46,9 +48,10 @@ export function SavedPlaceCard({
       </View>
       <Pressable
         accessibilityRole="button"
-        className="h-[52px] w-[52px] items-center justify-center rounded-2xl bg-neon"
-        onPress={onBookmarkPress}>
-        <BookmarkIcon size={22} color={colors.background} />
+        className="h-[52px] w-[52px] items-center justify-center rounded-full bg-pli-black-100"
+        onPress={onBookmarkPress}
+      >
+        <BookmarkIcon width={22} height={22} color={colors.background} />
       </Pressable>
     </Pressable>
   );
