@@ -5,7 +5,7 @@ import BookmarkIcon from '../../../assets/icons/bookmark.svg';
 import { colors } from '../../../shared/theme/colors';
 
 type Props = {
-  name: string;
+  placeName: string;
   creator: string;
   distance: string;
   onPress?: () => void;
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export function SavedPlaceCard({
-  name,
+  placeName,
   creator,
   distance,
   onPress,
@@ -26,23 +26,13 @@ export function SavedPlaceCard({
     >
       <View className="flex-1 gap-1 pr-3">
         <View className="flex-row items-center">
-          <Text className="text-[17px] font-medium leading-[24px] text-text-primary">
-            {name}
-          </Text>
+          <Text className="body-17-m text-text-primary">{placeName}</Text>
           <NextIcon width={16} height={16} color={colors.textPrimary} />
         </View>
         <View className="flex-row flex-wrap items-center gap-1">
-          <Text className="text-[15px] leading-[21px] text-text-muted">
-            {creator}
-          </Text>
-          <Text className="text-[15px] font-medium leading-[21px] text-text-secondary">
-            님이 생성한 핀
-          </Text>
-          <Text className="text-[15px] font-medium leading-[21px] text-text-secondary">
-            ∙
-          </Text>
-          <Text className="text-[15px] font-medium leading-[21px] text-text-secondary">
-            {distance}
+          <Text className="body-15-r text-text-muted">{creator}</Text>
+          <Text className="body-15-m text-text-secondary">
+            님이 생성한 핀 ∙ {distance}
           </Text>
         </View>
       </View>

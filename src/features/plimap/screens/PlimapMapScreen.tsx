@@ -1,8 +1,8 @@
-import {useRef} from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {DEFAULT_MAP_REGION} from '../../../config/maps';
+import { useRef } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { DEFAULT_MAP_REGION } from '../../../config/maps';
 
 const ZOOM_STEP = 1;
 
@@ -17,7 +17,10 @@ export function PlimapMapScreen() {
     }
 
     const nextZoom = Math.min(20, Math.max(2, (camera.zoom ?? 14) + delta));
-    mapRef.current?.animateCamera({...camera, zoom: nextZoom}, {duration: 200});
+    mapRef.current?.animateCamera(
+      { ...camera, zoom: nextZoom },
+      { duration: 200 },
+    );
   };
 
   return (
@@ -39,14 +42,16 @@ export function PlimapMapScreen() {
 
       <View
         className="absolute right-4 overflow-hidden rounded-2xl bg-surface/90"
-        style={{bottom: insets.bottom + 108}}>
+        style={{ bottom: insets.bottom + 108 }}
+      >
         <Pressable
           accessibilityLabel="확대"
           accessibilityRole="button"
           className="h-11 w-11 items-center justify-center border-b border-border"
           onPress={() => {
             zoomBy(ZOOM_STEP);
-          }}>
+          }}
+        >
           <Text className="text-2xl font-medium leading-none text-text-primary">
             +
           </Text>
@@ -57,7 +62,8 @@ export function PlimapMapScreen() {
           className="h-11 w-11 items-center justify-center"
           onPress={() => {
             zoomBy(-ZOOM_STEP);
-          }}>
+          }}
+        >
           <Text className="text-2xl font-medium leading-none text-text-primary">
             −
           </Text>

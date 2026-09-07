@@ -28,12 +28,23 @@ const hotPlaces = [
     meta: '120m ∙ 30개의 핀',
     image: require('../../../assets/images/hot-place-1.png'),
   },
+  {
+    id: '3',
+    name: '물빛무대 앞 광장',
+    meta: '120m ∙ 30개의 핀',
+    image: require('../../../assets/images/hot-place-1.png'),
+  },
 ] as const;
 
 const savedPlaces = [
-  { id: '1', name: '물빛무대 앞 광장', creator: '홍길동', distance: '470m' },
-  { id: '2', name: '뚝섬역 2호선', creator: '홍길동', distance: '470m' },
-  { id: '3', name: '한강서점', creator: '홍길동', distance: '470m' },
+  {
+    id: '1',
+    placeName: '물빛무대 앞 광장',
+    creator: '홍길동',
+    distance: '470m',
+  },
+  { id: '2', placeName: '뚝섬역 2호선', creator: '홍길동', distance: '470m' },
+  { id: '3', placeName: '한강서점', creator: '홍길동', distance: '470m' },
 ] as const;
 
 type HotFilter = 'near' | 'popular';
@@ -193,7 +204,7 @@ export function HomeScreen() {
           <Text className="text-[22px] font-medium leading-[31px] text-white">
             저장해둔 장소, 지금 근처예요!
           </Text>
-          <View className="gap-4">
+          <View className="gap-4 mt-5">
             {savedPlaces.map(place => (
               <SavedPlaceCard key={place.id} {...place} />
             ))}
