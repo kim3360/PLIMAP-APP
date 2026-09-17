@@ -1,4 +1,4 @@
-import { apiRequest } from '../../../shared/api/http';
+import { http, type ApiEnvelope } from '../../../shared/api/http';
 
 export interface MyProfile {
   id: number;
@@ -12,6 +12,7 @@ export interface MyProfile {
   pinCount: number;
 }
 
-export function getMyProfile() {
-  return apiRequest<MyProfile>('/api/v1/members/me');
+export async function getMyProfile() {
+  const response = await http.get<ApiEnvelope<MyProfile>>('/api/v1/members/me');
+  return response.data.result;
 }

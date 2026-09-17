@@ -1,4 +1,4 @@
-import { apiRequest } from '../../../shared/api/http';
+import { http, type ApiEnvelope } from '../../../shared/api/http';
 
 export interface HomePin {
   pinId: number;
@@ -23,6 +23,9 @@ export interface GetHomeParams {
   pageSize?: number;
 }
 
-export function getHome(params?: GetHomeParams) {
-  return apiRequest<Home>('/api/v1/pins/friends', { params });
+export async function getHome(params?: GetHomeParams) {
+  const response = await http.get<ApiEnvelope<Home>>('/api/v1/pins/friends', {
+    params,
+  });
+  return response.data.result;
 }

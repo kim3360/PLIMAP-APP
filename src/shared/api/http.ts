@@ -1,4 +1,4 @@
-import axios, { AxiosError, type AxiosRequestConfig } from 'axios';
+import axios, { AxiosError } from 'axios';
 import Config from 'react-native-config';
 import { getAccessToken } from '../../features/auth/storage/tokenStorage';
 
@@ -30,18 +30,11 @@ function isApiError(error: unknown): error is ApiError {
   return error instanceof Error && error.name === 'ApiError';
 }
 
-type ApiEnvelope<T> = {
+export type ApiEnvelope<T> = {
   isSuccess: boolean;
   code?: string;
   message?: string;
   result: T;
-};
-
-type RequestOptions = {
-  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-  body?: unknown;
-  params?: AxiosRequestConfig['params'];
-  auth?: boolean;
 };
 
 const CSRF_PROTECTED_METHODS = new Set(['POST', 'PUT', 'PATCH', 'DELETE']);
@@ -117,20 +110,3 @@ http.interceptors.response.use(
   },
 );
 
-export async function apiRequest<T>(
-  path: string,
-  options: RequestOptions = {},
-): Promise<T> {
-  const { method = 'GET', body, params, auth = true } = options;
-
-  const config: AxiosRequestConfig = {
-    url: path,
-    method,
-    data: body,
-    params,
-    skipAuth: !auth,
-  };
-
-  const response = await http.request<ApiEnvelope<T>>(config);
-  return response.data.result;
-}
