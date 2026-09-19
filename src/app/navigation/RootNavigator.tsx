@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import BootSplash from 'react-native-bootsplash';
 import { LoginScreen } from '../../features/auth/screens/LoginScreen';
+import { subscribeAuthExpired } from '../../features/auth/session';
 import { hasStoredSession } from '../../features/auth/storage/tokenStorage';
 import { HomeScreen } from '../../features/home/screens/HomeScreen';
 import { MyScreen } from '../../features/my/screens/MyScreen';
@@ -38,6 +39,13 @@ export function RootNavigator() {
     return () => {
       mounted = false;
     };
+  }, []);
+
+  useEffect(() => {
+    return subscribeAuthExpired(() => {
+      setIsAuthenticated(false);
+      setActiveTab('Home');
+    });
   }, []);
 
   if (isBootstrapping) {

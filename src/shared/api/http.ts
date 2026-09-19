@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import Config from 'react-native-config';
+import { expireSession } from '../../features/auth/session';
 import { getAccessToken } from '../../features/auth/storage/tokenStorage';
 
 declare module 'axios' {
@@ -95,6 +96,10 @@ http.interceptors.response.use(
     return response;
   },
   (error: AxiosError<ApiEnvelope<unknown>>) => {
+    if (error.response?.status === 401 && !error.config?.skipAuth) {
+      void expireSession();
+    }
+
     if (isApiError(error)) {
       return Promise.reject(error);
     }
