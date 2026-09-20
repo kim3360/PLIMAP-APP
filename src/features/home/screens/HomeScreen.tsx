@@ -155,7 +155,9 @@ export function HomeScreen() {
           <View className="flex-row gap-3">
             <Pressable
               className={`rounded-full px-4 py-2.5 ${
-                hotFilter === 'near' ? 'bg-surface-muted' : 'bg-transparent'
+                hotFilter === 'near'
+                  ? 'bg-surface-muted'
+                  : 'border border-border-muted bg-transparent'
               }`}
               onPress={() => setHotFilter('near')}
             >
